@@ -21,8 +21,11 @@ class HashMap {
     if (loadRatio > HashMap.MAX_LOAD_RATIO) {
       this._resize(this._capacity * HashMap.SIZE_RATIO);
     }
-
+    // if key exists find this.find slot else this.slot set key, value and increment length
     const index = this._findSlot(key);
+    if(this._slots[index]) {
+      this.length--;
+    }
     this._slots[index] = {
       key,
       value,
@@ -83,22 +86,25 @@ class HashMap {
 HashMap.MAX_LOAD_RATIO = 0.9;
 HashMap.SIZE_RATIO = 3;
 
+
+
 function main() {
   const lor = new HashMap();
   lor.set('Hobbit', 'Bilbo');
   lor.set('Hobbit', 'Frodo');
-  lor.set('Wizard', 'Gandolf');
-  lor.set('Human', 'Aragon');
-  lor.set('Elf', 'Legolas');
-  lor.set('Maiar', 'The Necromancer');
-  lor.set('Maiar', 'Sauron');
-  lor.set('Ringbearer', 'Gollum');
-  lor.set('LadyOfLight', 'Galadriel');
-  lor.set('HalfElven', 'Arwen');
-  lor.set('Ent', 'Treebeard');
-  console.log(lor);
+  // lor.set('Wizard', 'Gandolf');
+  // lor.set('Human', 'Aragon');
+  // lor.set('Elf', 'Legolas');
+  // lor.set('Maiar', 'The Necromancer');
+  // lor.set('Maiar', 'Sauron');
+  // lor.set('Ringbearer', 'Gollum');
+  // lor.set('LadyOfLight', 'Galadriel');
+  // lor.set('HalfElven', 'Arwen');
+  // lor.set('Ent', 'Treebeard');
+  // console.log(lor.get('Maiar'));
+  // console.log(lor);
 }
-main()
+main();
 
 module.exports = HashMap;
 
